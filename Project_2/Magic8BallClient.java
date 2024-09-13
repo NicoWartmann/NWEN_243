@@ -1,4 +1,3 @@
-package Project_2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,8 +23,6 @@ public class Magic8BallClient {
         ) {
             // Altough not required, i decided to send the question to the server.
             out.println(question);
-            
-            // Read the response from the server and print it
             String response = in.readLine();
             System.out.println("Magic 8 Ball says: " + response);
         } catch (IOException e) {
