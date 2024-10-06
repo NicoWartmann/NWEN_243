@@ -1,4 +1,4 @@
-import	pandas as pd	
+import pandas as pd	
 from datasets import load_dataset
 from sklearn.model_selection import	train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
@@ -56,3 +56,14 @@ print("Sentiment:", predict_sentiment("I didn't like this film at all. It was bo
 # Save the model and vectorizer
 joblib.dump(model, 'sentiment_model.joblib')
 joblib.dump(vectorizer, 'vectorizer.joblib')
+print("\nModel and vectorizer saved in the local directory.")
+# Demonstrate loading and using the saved model
+loaded_model = joblib.load('sentiment_model.joblib')
+loaded_vectorizer = joblib.load('vectorizer.joblib')
+print("\nTesting the loaded model:")
+def predict_sentiment_loaded(text):
+    text_vectorized = loaded_vectorizer.transform([text])
+    prediction = loaded_model.predict(text_vectorized)
+    return "Positive" if prediction[0] == 1 else "Negative"
+print("Sentiment:", predict_sentiment_loaded("A great watch! Highly recommended."))
+print("Sentiment:", predict_sentiment_loaded("Don't waste your time on this one."))
